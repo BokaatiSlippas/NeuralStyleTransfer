@@ -17,3 +17,6 @@ dot product of maps gives relative importance stylistically for the cooccurrence
 calculate gram matrices for each selected layer for styles
 Loss_style(I_comb) = average Loss_style(I_comb, a[l]) for each selected layer (FUTURE NOTE: maybe different levels of significance per layer)
 this is the same as 
+
+
+https://arxiv.org/pdf/1508.06576
