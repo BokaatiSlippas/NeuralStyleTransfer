@@ -11,3 +11,5 @@ https://www.youtube.com/watch?v=AJOyMJjPDtE&ab_channel=NeilRhodes
 Notes:
 
 calculate activations of I_content and I_comb on the final (or maybe a bit before) layer of the pretrained VGG-19 conv NN and do mse on these activations as the Loss(I_content)
+
+dot product of maps gives relative importance stylistically for the cooccurrence of different maps
