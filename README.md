@@ -1,4 +1,4 @@
-# NeuralStyleTransfer
+# NeuralStyleTransfer NOT COMPLETE YET
 Doing neural style transfer crap
 
 
