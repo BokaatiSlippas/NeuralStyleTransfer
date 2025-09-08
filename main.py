@@ -11,6 +11,7 @@ import os
 #print(model) # 0, 5, 10, 19, 28
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+#print(device)
 image_size = 256
 
 loader = transforms.Compose([
@@ -35,6 +36,19 @@ class VGG(nn.Module):
 
 def load_image(image_name):
     image = Image.open(image_name)
+    try:
+        exif = image._getexif()
+        if exif:
+            orientation = exif.get(0x0112)
+            if orientation:
+                if orientation == 3:
+                    image = image.rotate(180, expand=True)
+                elif orientation == 6:
+                    image = image.rotate(270, expand=True)
+                elif orientation == 8:
+                    image = image.rotate(90, expand=True)
+    except:
+        pass  # If EXIF data doesn't exist or can't be read
     image = loader(image).unsqueeze(0)
     return image.to(device)
 
@@ -54,6 +68,7 @@ def run_model(image_name, style_name):
     optimizer = optim.Adam([generated], lr=learning_rate)
 
     for step in range(total_steps):
+        #print(f"Step: {step}")
         generated_features = model(generated)
         original_features = model(original_img)
         style_features = model(style_img)
